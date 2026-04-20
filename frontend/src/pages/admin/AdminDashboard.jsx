@@ -33,46 +33,60 @@ const container = { hidden: { opacity: 0 }, show: { opacity: 1, transition: { st
 const item = { hidden: { opacity: 0, scale: 0.95 }, show: { opacity: 1, scale: 1, transition: { type: "spring", stiffness: 300, damping: 24 } } };
 
 const AdminOverview = () => (
-    <motion.div variants={container} initial="hidden" animate="show" className="space-y-6">
-        <motion.div variants={item} className="flex flex-col md:flex-row items-center justify-between gap-4 p-8 bg-slate-950 border border-slate-800 rounded-xl relative overflow-hidden text-white shadow-xl">
-            <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-600/10 blur-[80px] rounded-full pointer-events-none" />
+    <motion.div variants={container} initial="hidden" animate="show" className="space-y-8">
+        <motion.div variants={item} className="p-10 rounded-3xl bg-vibrant-admin relative overflow-hidden shadow-vibrant">
+            <div className="absolute top-0 right-0 w-80 h-80 bg-white/10 blur-[100px] rounded-full -mr-20 -mt-20" />
+            <div className="absolute bottom-0 left-0 w-60 h-60 bg-purple-400/20 blur-[80px] rounded-full -ml-20 -mb-20" />
             
-            <div className="relative z-10 flex items-center gap-4">
-                <div>
-                    <h2 className="text-3xl font-extrabold tracking-tight text-white mb-1">Global Command Center</h2>
-                    <p className="text-slate-400 text-lg">Platform-wide scalability and operational metrics.</p>
+            <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
+                <div className="text-white">
+                    <div className="flex items-center gap-3 mb-4">
+                        <div className="p-2 bg-white/20 backdrop-blur-md rounded-lg">
+                            <ShieldCheck className="w-5 h-5 text-white" />
+                        </div>
+                        <span className="text-sm font-bold tracking-[0.2em] uppercase opacity-80">Root Infrastructure</span>
+                    </div>
+                    <h2 className="text-5xl font-black tracking-tight mb-3">Global Command</h2>
+                    <p className="text-indigo-100 text-xl font-medium max-w-md">Orchestrate platform-wide operations and identity management at scale.</p>
                 </div>
-                <LiveBadge status="All Systems Operational" color="blue" />
-            </div>
-            <div className="flex gap-2 relative z-10">
-                <Button variant="outline" className="border-slate-700 bg-slate-900/50 hover:bg-slate-800 text-white">
-                    <Download className="w-4 h-4 mr-2" />
-                    Export Setup
-                </Button>
-                <Button className="bg-blue-600 hover:bg-blue-700 text-white shadow-sm">
-                    <Settings className="w-4 h-4 mr-2" />
-                    Global Settings
-                </Button>
+                <div className="flex gap-4">
+                    <Button variant="outline" className="bg-white/10 border-white/20 text-white hover:bg-white/20 backdrop-blur-md px-8 py-6 text-lg rounded-2xl">
+                        System Config
+                    </Button>
+                    <Button className="bg-white text-indigo-600 hover:bg-indigo-50 px-8 py-6 text-lg rounded-2xl shadow-xl font-bold">
+                        <Settings className="w-5 h-5 mr-2" /> Global Audit
+                    </Button>
+                </div>
             </div>
         </motion.div>
 
         <motion.div variants={item} className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-             {[
-                { title: 'Total Hostels', value: '3,452', icon: ShieldCheck, change: '+12%', color: 'blue' },
-                { title: 'Active Users', value: '12,231', icon: Users, change: '+24%', color: 'emerald' },
-                { title: 'Monthly Revenue', value: '$842,000', icon: CreditCard, change: '+18%', color: 'indigo' },
-                { title: 'System Health', value: '99.9%', icon: Activity, change: 'Stable', color: 'purple' },
+            {[
+                { title: 'Total ARR', value: 542310, sub: '+ ₹12.4k today', color: 'indigo', prefix: '₹' },
+                { title: 'System Load', value: 42, sub: 'Optimized', color: 'blue', suffix: '%' },
+                { title: 'Active Nodes', value: 8, sub: 'All Healthy', color: 'purple', suffix: ' Nodes' },
+                { title: 'Security Alerts', value: 0, sub: 'Clean Audit', color: 'emerald' },
             ].map((stat, i) => (
-                <motion.div key={i} whileHover={{ y: -2 }} className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-6 shadow-sm">
-                     <div className="flex justify-between items-start mb-4">
-                        <div className={`p-2 rounded-lg bg-${stat.color}-50 text-${stat.color}-600 dark:bg-${stat.color}-900/20 dark:text-${stat.color}-400`}>
-                            <stat.icon className="w-5 h-5" />
-                        </div>
-                        <Badge variant="outline" className="bg-slate-50 dark:bg-slate-800">{stat.change}</Badge>
-                     </div>
-                     <p className="text-sm font-medium text-slate-500 mb-1">{stat.title}</p>
-                     <h3 className="text-3xl font-bold text-slate-900 dark:text-white tabular-nums">{stat.value}</h3>
-                </motion.div>
+                <Card key={i} topAccent={stat.color} className="p-6 shadow-vibrant-hover bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800">
+                    <div className="flex justify-between items-start mb-4">
+                        <p className="text-xs font-bold text-slate-500 uppercase tracking-widest">{stat.title}</p>
+                        <ShieldCheck className="w-4 h-4 text-indigo-500" />
+                    </div>
+                    <div className="flex items-baseline gap-1">
+                        <span className={`text-3xl font-black text-slate-900 dark:text-white mb-1 tabular-nums`}>
+                            {stat.prefix}
+                            <motion.span 
+                                initial={{ opacity: 0 }} 
+                                animate={{ opacity: 1 }}
+                                transition={{ duration: 1.5 }}
+                            >
+                                {stat.value}
+                            </motion.span>
+                            {stat.suffix}
+                        </span>
+                    </div>
+                    <p className="text-sm font-medium text-slate-400">{stat.sub}</p>
+                </Card>
             ))}
         </motion.div>
 

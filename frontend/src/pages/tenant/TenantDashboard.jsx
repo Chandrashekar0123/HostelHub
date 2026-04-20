@@ -31,34 +31,59 @@ const Overview = () => {
     ];
 
     return (
-        <motion.div variants={container} initial="hidden" animate="show" className="space-y-6">
-            
-            <motion.div variants={item} className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 p-8 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl">
-                <div className="relative z-10">
-                    <div className="flex items-center gap-3 mb-2">
-                        <h2 className="text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white">Resident Portal</h2>
-                        <LiveBadge status="Active Sync" color="emerald" />
+        <motion.div variants={container} initial="hidden" animate="show" className="space-y-8">
+            <motion.div variants={item} className="p-10 rounded-3xl bg-vibrant-tenant relative overflow-hidden shadow-vibrant">
+                <div className="absolute top-0 right-0 w-80 h-80 bg-white/10 blur-[100px] rounded-full -mr-20 -mt-20" />
+                <div className="absolute bottom-0 left-0 w-60 h-60 bg-blue-400/20 blur-[80px] rounded-full -ml-20 -mb-20" />
+                
+                <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
+                    <div className="text-white">
+                        <div className="flex items-center gap-3 mb-4">
+                            <div className="p-2 bg-white/20 backdrop-blur-md rounded-lg">
+                                <Home className="w-5 h-5 text-white" />
+                            </div>
+                            <span className="text-sm font-bold tracking-[0.2em] uppercase opacity-80">Resident Portal</span>
+                        </div>
+                        <h2 className="text-5xl font-black tracking-tight mb-3">Welcome, Alex</h2>
+                        <p className="text-blue-100 text-xl font-medium max-w-md">Your comfort is our priority. Experience the future of hostel living.</p>
                     </div>
-                    <p className="text-slate-500 text-lg">Central hub for your tenancy at Highland Residency.</p>
+                    <div className="flex gap-4">
+                        <Button variant="outline" className="bg-white/10 border-white/20 text-white hover:bg-white/20 backdrop-blur-md px-8 py-6 text-lg rounded-2xl">
+                            View Profile
+                        </Button>
+                        <Button className="bg-white text-blue-600 hover:bg-blue-50 px-8 py-6 text-lg rounded-2xl shadow-xl font-bold">
+                            Quick Booking
+                        </Button>
+                    </div>
                 </div>
-                <Button className="bg-blue-600 hover:bg-blue-700">
-                    <Zap className="w-4 h-4 mr-2" /> View Inbox
-                </Button>
             </motion.div>
 
             <motion.div variants={item} className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-                {stats.map((stat, i) => (
-                    <motion.div key={i} whileHover={{ y: -2 }} className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-6 shadow-sm">
-                        <div className="flex justify-between items-start mb-4">
-                            <div className={cn("p-2.5 rounded-lg", stat.bg)}>
-                                <stat.icon className={cn("w-5 h-5", stat.text)} />
-                            </div>
-                        </div>
-                        <p className="text-sm font-medium text-slate-500 mb-1">{stat.label}</p>
-                        <h3 className="text-2xl font-bold text-slate-900 dark:text-white">{stat.value}</h3>
-                    </motion.div>
-                ))}
-            </motion.div>
+            {[
+                { title: 'In-Room Credits', value: 1250, sub: 'Gold Rewards', color: 'blue', prefix: '₹' },
+                { title: 'Days to Due', value: 5, sub: 'May 25 Rent', color: 'indigo', suffix: ' Days' },
+                { title: 'Meal Credits', value: 42, sub: 'Standard Plan', color: 'purple', suffix: '/45' },
+                { title: 'Support Open', value: 2, sub: '1 In-Progress', color: 'rose' },
+            ].map((stat, i) => (
+                <Card key={i} topAccent={stat.color} className="p-6 shadow-vibrant-hover bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800">
+                    <p className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-1">{stat.title}</p>
+                    <div className="flex items-baseline gap-1">
+                        <span className={`text-2xl font-black text-${stat.color}-600 dark:text-${stat.color}-400 mb-1`}>
+                           {stat.prefix}
+                           <motion.span 
+                             initial={{ opacity: 0 }} 
+                             animate={{ opacity: 1 }}
+                             transition={{ duration: 1 }}
+                           >
+                             {stat.value}
+                           </motion.span>
+                           {stat.suffix}
+                        </span>
+                    </div>
+                    <p className="text-sm font-medium text-slate-400">{stat.sub}</p>
+                </Card>
+            ))}
+        </motion.div>
 
             <motion.div variants={item} className="grid gap-6 md:grid-cols-2 lg:grid-cols-7">
                 <Card className="col-span-4 bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 shadow-sm">

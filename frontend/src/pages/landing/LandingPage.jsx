@@ -1,128 +1,136 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { Shield, Building, Globe, Zap, Users, BarChart } from 'lucide-react';
+import { ShieldCheck, LayoutDashboard, CreditCard, Home, Zap, Users, Globe, BarChart } from 'lucide-react';
 import Button from '../../components/ui/Button';
-import { cn } from '../../lib/utils';
 
 const LandingPage = () => {
-  return (
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 font-sans">
-      
-      {/* Navigation */}
-      <nav className="border-b border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 absolute top-0 w-full z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center gap-2">
-                <Building className="w-8 h-8 text-blue-600" />
-                <span className="text-xl font-bold text-slate-900 dark:text-white">HostelHub Enterprise</span>
-            </div>
-            <div className="flex items-center gap-4">
-              <Link to="/login" className="text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white font-medium">Log In</Link>
-              <Link to="/login">
-                <Button className="bg-blue-600 hover:bg-blue-700 text-white shadow-sm">Portal Access</Button>
-              </Link>
-            </div>
-          </div>
-        </div>
-      </nav>
-
-      {/* Hero Section */}
-      <div className="pt-32 pb-20 sm:pt-40 sm:pb-24 overflow-hidden relative">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[500px] bg-blue-100/50 dark:bg-blue-900/20 blur-[100px] rounded-[100%] pointer-events-none" />
-        
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-            <motion.h1 
-                initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}
-                className="text-5xl md:text-6xl font-extrabold text-slate-900 dark:text-white tracking-tight"
-            >
-                Centralized Hostel <br className="hidden md:block"/> Management Infrastructure
-            </motion.h1>
-            <motion.p 
-                initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.1 }}
-                className="mt-6 text-xl text-slate-600 dark:text-slate-400 max-w-3xl mx-auto"
-            >
-                Streamline operations, automate rent collection, and scale your property portfolio with an enterprise-grade platform built for modern administrators.
-            </motion.p>
-            <motion.div 
-                initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.2 }}
-                className="mt-10 flex flex-col sm:flex-row justify-center gap-4"
-            >
-                <Link to="/login"><Button size="lg" className="bg-blue-600 hover:bg-blue-700 px-8 py-4 text-lg w-full sm:w-auto">Start Deployment</Button></Link>
-                <Link to="/login"><Button size="lg" variant="outline" className="px-8 py-4 text-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 w-full sm:w-auto">Request Technical Demo</Button></Link>
-            </motion.div>
-        </div>
-      </div>
-
-      {/* Features Section */}
-      <div className="py-24 bg-white dark:bg-slate-900 border-y border-slate-200 dark:border-slate-800">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-              <div className="text-center mb-16">
-                  <h2 className="text-3xl font-bold text-slate-900 dark:text-white">Core Capabilities</h2>
-                  <p className="mt-4 text-lg text-slate-600 dark:text-slate-400">Everything required to govern residential systems.</p>
-              </div>
-
-              <div className="grid md:grid-cols-3 gap-8">
-                {[
-                    { icon: Globe, title: 'Multi-Tenant Architecture', desc: 'Isolate data streams per organization ensuring maximum operational privacy.' },
-                    { icon: Shield, title: 'Compliance & Security', desc: 'Built on rigorous data security standards with encrypted payload delivery.' },
-                    { icon: BarChart, title: 'Predictive Analytics', desc: 'Real-time telemetry regarding occupancy, rent yields, and maintenance metrics.' },
-                    { icon: Zap, title: 'Automated Billing', desc: 'Zero-touch invoicing and receipt orchestration for large residential properties.' },
-                    { icon: Users, title: 'Staff Delegation', desc: 'Role-based access constraints allocating operational tasks directly to field agents.' },
-                    { icon: Building, title: 'Portfolio Scalability', desc: 'Support from 50 beds to global deployments exceeding 500,000 units.' },
-                ].map((f, i) => (
-                    <div key={i} className="p-8 border border-slate-200 dark:border-slate-800 rounded-xl bg-slate-50 dark:bg-slate-950/50 hover:border-blue-500 transition-colors">
-                        <f.icon className="w-8 h-8 text-blue-600 mb-6" />
-                        <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3">{f.title}</h3>
-                        <p className="text-slate-600 dark:text-slate-400">{f.desc}</p>
-                    </div>
-                ))}
-              </div>
-          </div>
-      </div>
-
-      {/* Pricing Section */}
-      <div className="py-24 bg-slate-50 dark:bg-slate-950">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-16">Enterprise Licensing</h2>
-            <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-                {[
-                    { name: 'Standard', price: '$499', period: '/month', features: ['Up to 5 Properties', 'Standard Reporting', 'Email Support'] },
-                    { name: 'Professional', price: '$1,299', period: '/month', features: ['Up to 25 Properties', 'Advanced Analytics', 'Priority 24/7 Support', 'Custom Integrations'], highlight: true },
-                    { name: 'Enterprise', price: 'Custom', period: '', features: ['Unlimited Properties', 'Dedicated Account Manager', 'On-Premise Deployment options', 'SLA Guarantees'] },
-                ].map((tier, i) => (
-                    <div key={i} className={cn("p-8 border rounded-2xl bg-white dark:bg-slate-900 relative", tier.highlight ? 'border-blue-600 shadow-xl scale-105 z-10' : 'border-slate-200 dark:border-slate-800')}>
-                        {tier.highlight && <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-blue-600 text-white text-xs px-3 py-1 rounded-full uppercase font-bold tracking-wider">Recommended</div>}
-                        <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-4">{tier.name}</h3>
-                        <div className="text-4xl font-extrabold text-slate-900 dark:text-white mb-6">
-                            {tier.price}<span className="text-lg text-slate-500 font-normal">{tier.period}</span>
+    return (
+        <div className="min-h-screen bg-white font-sans selection:bg-blue-100 selection:text-blue-900">
+            {/* Elegant Fixed Nav */}
+            <nav className="fixed top-0 w-full z-50 bg-white/70 backdrop-blur-xl border-b border-slate-100">
+                <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-indigo-700 rounded-xl flex items-center justify-center shadow-lg shadow-blue-500/20">
+                            <Home className="text-white w-6 h-6" />
                         </div>
-                        <ul className="space-y-4 mb-8 text-left">
-                            {tier.features.map((feat, j) => (
-                                <li key={j} className="flex items-center text-slate-600 dark:text-slate-400">
-                                    <Shield className="w-5 h-5 text-blue-500 mr-2 flex-shrink-0" />
-                                    {feat}
-                                </li>
-                            ))}
-                        </ul>
-                        <Button className={cn("w-full py-6", tier.highlight ? 'bg-blue-600 hover:bg-blue-700 text-white' : 'bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-900 dark:text-white border-0')}>
-                            Procure License
-                        </Button>
+                        <span className="text-2xl font-black text-slate-900 tracking-tighter">HostelHub</span>
                     </div>
-                ))}
-            </div>
+                    <div className="hidden md:flex items-center gap-8 text-sm font-bold text-slate-600">
+                        <a href="#features" className="hover:text-blue-600 transition-colors">Platform</a>
+                        <a href="#solutions" className="hover:text-blue-600 transition-colors">Solutions</a>
+                        <a href="#pricing" className="hover:text-blue-600 transition-colors">Pricing</a>
+                    </div>
+                    <div className="flex items-center gap-4">
+                        <Link to="/login" className="text-sm font-bold text-slate-600 hover:text-blue-600 transition-colors px-4">Log in</Link>
+                        <Link to="/signup">
+                            <Button className="px-6 py-2.5 bg-slate-900 text-white text-sm font-bold rounded-xl hover:bg-slate-800 transition-all shadow-xl shadow-slate-900/10">
+                                Get Started
+                            </Button>
+                        </Link>
+                    </div>
+                </div>
+            </nav>
+
+            <main>
+                {/* High-Fidelity Hero Section */}
+                <section className="pt-48 pb-32 px-6 relative overflow-hidden">
+                    <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-blue-50/50 blur-[120px] rounded-full -mr-40 -mt-40 pointer-events-none" />
+                    <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-indigo-50/50 blur-[100px] rounded-full -ml-20 -mb-20 pointer-events-none" />
+                    
+                    <div className="max-w-5xl mx-auto text-center relative z-10">
+                        <motion.div
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            className="inline-flex items-center gap-2 px-4 py-2 bg-blue-50 border border-blue-100 rounded-full text-blue-700 text-xs font-black uppercase tracking-widest mb-10"
+                        >
+                            <span className="flex h-2 w-2 rounded-full bg-blue-600 animate-pulse" />
+                            Enterprise Grade Infrastructure
+                        </motion.div>
+                        
+                        <motion.h1 
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.1 }}
+                            className="text-7xl md:text-8xl font-black text-slate-900 tracking-tight leading-[0.95] mb-10"
+                        >
+                            Manage Your Hostel <br /> 
+                            <span className="text-blue-600">Without the Chaos.</span>
+                        </motion.h1>
+                        
+                        <motion.p 
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.2 }}
+                            className="text-xl md:text-2xl text-slate-500 max-w-3xl mx-auto mb-14 leading-relaxed font-medium"
+                        >
+                            The ultimate operating system for modern property managers. Automate rent collection, scale occupancy, and empower residents with a premium portal.
+                        </motion.p>
+                        
+                        <motion.div 
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.3 }}
+                            className="flex flex-col sm:flex-row items-center justify-center gap-6"
+                        >
+                            <Link to="/signup" className="w-full sm:w-auto px-10 py-5 bg-blue-600 text-white font-black text-lg rounded-2xl hover:bg-blue-700 shadow-2xl shadow-blue-600/40 transition-all hover:-translate-y-1">
+                                Deploy Now — It's Free
+                            </Link>
+                            <Link to="/login" className="w-full sm:w-auto px-10 py-5 bg-white border-2 border-slate-200 text-slate-900 font-black text-lg rounded-2xl hover:bg-slate-50 transition-all">
+                                View Live Demo
+                            </Link>
+                        </motion.div>
+                    </div>
+                </section>
+
+                {/* Features Matrix */}
+                <section id="features" className="py-32 px-6 bg-slate-50/50">
+                    <div className="max-w-7xl mx-auto">
+                        <div className="text-center mb-24">
+                            <h2 className="text-4xl md:text-5xl font-black text-slate-900 tracking-tight mb-6">Core Capabilities</h2>
+                            <p className="text-lg text-slate-500 max-w-2xl mx-auto font-medium">Everything required to govern residential systems at enterprise scale.</p>
+                        </div>
+
+                        <div className="grid md:grid-cols-3 gap-8">
+                            {[
+                              { icon: CreditCard, title: "Rent Flow Automator", desc: "Automated ledger reconciliation with zero-touch rent tracking for every resident." },
+                              { icon: ShieldCheck, title: "Digital Security", desc: "Encrypted resident data management and priority maintenance escalation matrix." },
+                              { icon: LayoutDashboard, title: "Global Command", desc: "Monitor multiple properties from a single pane of glass with deep financial telemetry." },
+                              { icon: Zap, title: "Automated Billing", desc: "Instant invoice generation and receipt orchestration for large residential properties." },
+                              { icon: Users, title: "Staff Delegation", desc: "Role-based access constraints allocating operational tasks directly to field agents." },
+                              { icon: Globe, title: "Portfolio Scalability", desc: "Support across global deployments exceeding 50,000 units with ease." }
+                            ].map((feature, i) => (
+                              <motion.div 
+                                key={i}
+                                whileHover={{ y: -5 }}
+                                className="p-10 bg-white border border-slate-200 rounded-[32px] shadow-sm hover:shadow-xl hover:shadow-blue-500/5 transition-all group"
+                              >
+                                <div className="w-14 h-14 bg-blue-50 rounded-2xl flex items-center justify-center border border-blue-100 mb-8 text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-colors">
+                                    <feature.icon className="w-7 h-7" />
+                                </div>
+                                <h3 className="text-2xl font-black text-slate-900 mb-4">{feature.title}</h3>
+                                <p className="text-slate-500 leading-relaxed font-medium">{feature.desc}</p>
+                              </motion.div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+            </main>
+
+            {/* Premium Footer */}
+            <footer className="py-20 border-t border-slate-100 text-center">
+                <div className="max-w-7xl mx-auto px-6">
+                    <div className="flex items-center justify-center gap-3 mb-8">
+                        <div className="w-8 h-8 bg-slate-900 rounded-lg flex items-center justify-center">
+                            <Home className="text-white w-5 h-5" />
+                        </div>
+                        <span className="text-xl font-bold text-slate-900 tracking-tighter">HostelHub</span>
+                    </div>
+                    <p className="text-slate-400 text-sm font-medium">© 2026 HostelHub Enterprise Systems. Distributed under High-Tier SaaS Licenses.</p>
+                </div>
+            </footer>
         </div>
-      </div>
-
-      {/* Footer CTA */}
-      <div className="bg-blue-900 dark:bg-slate-900 py-20 text-center border-t border-blue-800 dark:border-slate-800">
-        <h2 className="text-3xl font-bold text-white mb-6">Ready to digitize your infrastructure?</h2>
-        <p className="text-blue-200 text-lg mb-8 max-w-2xl mx-auto">Deploy HostelHub Enterprise today and streamline your entire portfolio from a single command center.</p>
-        <Link to="/login"><Button size="lg" className="bg-white text-blue-900 hover:bg-slate-100 px-8 py-4 font-bold">Contact Sales</Button></Link>
-      </div>
-
-    </div>
-  );
+    );
 };
 
 export default LandingPage;

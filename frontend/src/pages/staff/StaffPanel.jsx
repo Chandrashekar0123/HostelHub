@@ -18,40 +18,50 @@ const container = { hidden: { opacity: 0 }, show: { opacity: 1, transition: { st
 const item = { hidden: { opacity: 0, scale: 0.95 }, show: { opacity: 1, scale: 1, transition: { type: "spring", stiffness: 300, damping: 24 } } };
 
 const StaffOverview = () => (
-    <motion.div variants={container} initial="hidden" animate="show" className="space-y-6">
-        <motion.div variants={item} className="flex flex-col md:flex-row items-center justify-between gap-4 p-8 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl relative overflow-hidden">
-            <div className="relative z-10 flex items-center gap-4">
-                <div>
-                    <h2 className="text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white">Staff Control Center</h2>
-                    <p className="text-slate-500 text-lg">Manage your tasks and shift attendance efficiently.</p>
+    <motion.div variants={container} initial="hidden" animate="show" className="space-y-8">
+        <motion.div variants={item} className="p-10 rounded-3xl bg-vibrant-staff relative overflow-hidden shadow-vibrant">
+            <div className="absolute top-0 right-0 w-80 h-80 bg-white/10 blur-[100px] rounded-full -mr-20 -mt-20" />
+            <div className="absolute bottom-0 left-0 w-60 h-60 bg-teal-400/20 blur-[80px] rounded-full -ml-20 -mb-20" />
+            
+            <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
+                <div className="text-white">
+                    <div className="flex items-center gap-3 mb-4">
+                        <div className="p-2 bg-white/20 backdrop-blur-md rounded-lg">
+                            <Zap className="w-5 h-5 text-white" />
+                        </div>
+                        <span className="text-sm font-bold tracking-[0.2em] uppercase opacity-80">Operations Hub</span>
+                    </div>
+                    <h2 className="text-5xl font-black tracking-tight mb-3">Staff Console</h2>
+                    <p className="text-teal-100 text-xl font-medium max-w-md">Streamlined task management and real-time operational response center.</p>
                 </div>
-                <LiveBadge status="Shift Tracker: Live" color="emerald" />
-            </div>
-            <div className="flex gap-4 p-4 bg-emerald-50 dark:bg-emerald-900/20 border border-emerald-200 dark:border-emerald-800 rounded-xl relative z-10">
-                <div className="flex flex-col">
-                    <span className="text-[10px] font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-widest">Shift Status</span>
-                    <span className="text-sm font-bold flex items-center gap-2 text-slate-900 dark:text-white mt-1">
-                        <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                        On Duty (08:00 - 16:00)
-                    </span>
+                <div className="flex gap-4">
+                    <Button variant="outline" className="bg-white/10 border-white/20 text-white hover:bg-white/20 backdrop-blur-md px-8 py-6 text-lg rounded-2xl">
+                        Log Shift
+                    </Button>
+                    <Button className="bg-white text-teal-600 hover:bg-teal-50 px-8 py-6 text-lg rounded-2xl shadow-xl font-bold">
+                        <Calendar className="w-5 h-5 mr-2" /> Task Schedule
+                    </Button>
                 </div>
             </div>
         </motion.div>
 
         <motion.div variants={item} className="grid gap-6 md:grid-cols-3">
             {[
-                { title: 'Open Tasks', value: '8', icon: Target, color: 'blue' },
-                { title: 'In Progress', value: '3', icon: Clock, color: 'amber' },
-                { title: 'Attendance Target', value: '98%', icon: UserCheck, color: 'emerald' },
+                { title: 'Open Tasks', value: 8, icon: Target, color: 'blue' },
+                { title: 'In Progress', value: 3, icon: Clock, color: 'teal' },
+                { title: 'Attendance', value: 98, icon: UserCheck, color: 'emerald', suffix: '%' },
             ].map((stat, i) => (
-                <Card key={i} className={`bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 shadow-sm border-t-4 border-t-${stat.color}-500 group overflow-hidden`}>
+                <Card key={i} topAccent={stat.color} className="shadow-vibrant shadow-slate-200/50">
                     <CardContent className="p-6">
                         <div className="flex items-center justify-between relative z-10">
                             <div>
-                                <p className="text-sm font-medium text-slate-500 mb-1">{stat.title}</p>
-                                <h3 className="text-4xl font-bold text-slate-900 dark:text-white">{stat.value}</h3>
+                                <p className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-1">{stat.title}</p>
+                                <h3 className="text-4xl font-black text-slate-900 dark:text-white">
+                                    <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1 }}>{stat.value}</motion.span>
+                                    {stat.suffix}
+                                </h3>
                             </div>
-                            <div className={`p-4 rounded-xl bg-${stat.color}-50 text-${stat.color}-600 dark:bg-${stat.color}-900/20 dark:text-${stat.color}-400 group-hover:scale-110 transition-transform`}>
+                            <div className={`p-4 rounded-xl bg-${stat.color}-50 text-${stat.color}-600 dark:bg-${stat.color}-900/20 dark:text-${stat.color}-400`}>
                                 <stat.icon className="w-6 h-6" />
                             </div>
                         </div>

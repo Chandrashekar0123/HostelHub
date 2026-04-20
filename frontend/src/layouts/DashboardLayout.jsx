@@ -5,10 +5,10 @@ import { motion } from 'framer-motion';
 
 const DashboardLayout = ({ children, role }) => {
   return (
-    <div className="flex min-h-screen bg-background">
+    <div className={`flex min-h-screen bg-background theme-${role}`}>
       <Sidebar role={role} />
       <div className="flex flex-col flex-1 min-w-0">
-        <TopNavbar />
+        <TopNavbar role={role} />
         <motion.main 
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}

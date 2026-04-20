@@ -2,15 +2,26 @@ import React from 'react';
 import { cn } from '../../lib/utils';
 import { motion } from 'framer-motion';
 
-const Card = React.forwardRef(({ className, children, hoverEffect = false, ...props }, ref) => {
+const Card = React.forwardRef(({ className, children, topAccent, hoverEffect = false, ...props }, ref) => {
   const CardComponent = hoverEffect ? motion.div : 'div';
   const hoverProps = hoverEffect ? { whileHover: { y: -5 }, transition: { duration: 0.2 } } : {};
+  
+  const accentClasses = {
+    blue: "border-t-blue-500",
+    indigo: "border-t-indigo-500",
+    purple: "border-t-purple-500",
+    rose: "border-t-rose-500",
+    emerald: "border-t-emerald-500",
+    amber: "border-t-amber-500"
+  };
 
   return (
     <CardComponent
       ref={ref}
       className={cn(
-        "rounded-xl border border-border bg-card text-card-foreground shadow-sm overflow-hidden",
+        "rounded-2xl border border-border bg-card text-card-foreground shadow-sm overflow-hidden relative",
+        topAccent && "border-t-4",
+        topAccent && accentClasses[topAccent],
         className
       )}
       {...hoverProps}

@@ -47,63 +47,60 @@
     --input: 217.2 32.6% 17.5%;
     --ring: 224.3 76.3% 48%;
   }
-}
 
-@layer base {
+  /* Portal Themes */
+  .theme-tenant { --primary: 221.2 83.2% 53.3%; --accent: 217.2 91.2% 59.8%; }
+  .theme-owner { --primary: 160 84% 39%; --accent: 142.1 76.2% 36.3%; }
+  .theme-staff { --primary: 181 84% 32%; --accent: 181 84% 45%; }
+  .theme-admin { --primary: 262.1 83.3% 57.8%; --accent: 271.5 81.3% 55.9%; }
+
   body {
     background-color: hsl(var(--background));
     color: hsl(var(--foreground));
     font-feature-settings: "rlig" 1, "calt" 1;
+    @apply transition-colors duration-300;
   }
 }
 
 @layer utilities {
-  /* Premium Glassmorphism Classes */
+  .bg-vibrant-tenant { @apply bg-gradient-to-br from-blue-600 to-indigo-700; }
+  .bg-vibrant-owner { @apply bg-gradient-to-br from-emerald-500 to-teal-700; }
+  .bg-vibrant-staff { @apply bg-gradient-to-br from-teal-600 to-cyan-800; }
+  .bg-vibrant-admin { @apply bg-gradient-to-br from-indigo-600 to-purple-700; }
+
+  .text-vibrant-tenant { @apply bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600; }
+  .text-vibrant-owner { @apply bg-clip-text text-transparent bg-gradient-to-r from-emerald-500 to-teal-600; }
+  .text-vibrant-staff { @apply bg-clip-text text-transparent bg-gradient-to-r from-teal-500 to-cyan-600; }
+  .text-vibrant-admin { @apply bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-purple-600; }
+
+  .shadow-vibrant {
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+  }
+
+  .shadow-vibrant-hover {
+    @apply transition-all duration-300;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  }
+
+  .shadow-vibrant-hover:hover {
+    @apply -translate-y-1;
+    box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  }
+
   .glass {
-    @apply bg-white/60 backdrop-blur-md border border-white/40 shadow-[0_8px_30px_rgb(0,0,0,0.04)];
+    @apply bg-white/80 backdrop-blur-md border border-white/40 shadow-sm transition-all;
   }
 
   .dark .glass {
-    @apply bg-slate-900/60 border-slate-800/40 shadow-[0_8px_30px_rgb(0,0,0,0.2)];
+    @apply bg-slate-900/80 border-slate-800/40 shadow-xl;
   }
 
-  .glass-premium {
-    @apply bg-white/40 backdrop-blur-xl border border-white/50 shadow-[0_8px_32px_rgb(0,0,0,0.08)];
+  .glass-card {
+    @apply bg-white/50 backdrop-blur-lg border border-white/20 shadow-lg rounded-3xl overflow-hidden;
   }
 
-  .dark .glass-premium {
-    @apply bg-slate-950/40 border-slate-800/50 shadow-[0_8px_32px_rgb(0,0,0,0.3)];
-  }
-
-  .glass-nav {
-    @apply bg-white/40 backdrop-blur-2xl border-b border-white/20 shadow-sm relative z-50;
-  }
-
-  .dark .glass-nav {
-    @apply bg-slate-950/40 border-slate-800/20 shadow-sm;
-  }
-
-  /* Neon Glow Utilities */
-  .neon-glow {
-    box-shadow: 0 0 15px 2px hsl(var(--primary) / 0.5);
-  }
-
-  .dark .neon-glow {
-    box-shadow: 0 0 20px 4px hsl(var(--primary) / 0.3);
-  }
-
-  .neon-border {
-    @apply border border-transparent;
-    background: linear-gradient(hsl(var(--card)), hsl(var(--card))) padding-box,
-                linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary)/0.1)) border-box;
-  }
-
-  .gradient-text {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-purple-600;
-  }
-
-  .dark .gradient-text {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-purple-400;
+  .dark .glass-card {
+    @apply bg-slate-900/50 border-slate-800/20 shadow-2xl;
   }
 }
 
