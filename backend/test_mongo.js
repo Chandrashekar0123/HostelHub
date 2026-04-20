@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 
-const uri = "mongodb://hostel_admin:XMCpPZIZbne7NnNs@ac-ozmdn3w-shard-00-00.tdsqbc0.mongodb.net:27017,ac-ozmdn3w-shard-00-01.tdsqbc0.mongodb.net:27017,ac-ozmdn3w-shard-00-02.tdsqbc0.mongodb.net:27017/?ssl=true&replicaSet=atlas-14n4zw-shard-0&authSource=admin&appName=hostelhub-db";
-
+const uri = "YOUR DATABASE URL"
 console.log("Attempting to connect to MongoDB...");
 
 mongoose.connect(uri)
