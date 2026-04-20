@@ -19,7 +19,8 @@ Comprehensive search and booking interface with real-time room availability.
 
 ### Management Dashboard (Owner)
 Audit inbound payments, manage unit assignments, and track inventory logistics.
-![Owner Portal](./docs/screenshots/owner_portal.png)
+<img width="1366" height="607" alt="image" src="https://github.com/user-attachments/assets/3695dc1a-c292-427f-809c-f8409b673d84" />
+
 
 ### Command Center (Admin)
 Global platform telemetry, identity access management, and subscription tier configuration.
@@ -36,7 +37,7 @@ Global platform telemetry, identity access management, and subscription tier con
 
 1.  **Clone & Install**:
     ```bash
-    git clone [repository-url]
+    git clone https://github.com/Chandrashekar0123/HostelHub
     cd HostelHub/frontend
     npm install
     ```
